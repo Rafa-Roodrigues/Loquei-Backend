@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 
 export const connection = new DataSource({
   type: 'mysql',
-  host: 'loquei-server-mysql.mysql.database.azure.com',
+  host: 'loquei.mysql.database.azure.com',
   username: 'managementUser',
   password: 'database127$',
   database: 'loquei',

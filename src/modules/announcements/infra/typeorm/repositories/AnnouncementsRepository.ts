@@ -78,6 +78,17 @@ export class AnnouncementsRepository implements IAnnouncementsRepository {
       .getMany();
   }
 
+  limitAnnouncements(id: number): Promise<Announcement[]> {
+    return this.repository
+      .createQueryBuilder('a')
+      .innerJoinAndSelect('a.images', 'i')
+      .innerJoinAndSelect('a.adress', 'd')
+      .innerJoinAndSelect('a.category', 'c')
+      .andWhere('a.id != :id', { id })
+      .limit(5)
+      .getMany();
+  }
+
   listAnnouncementsOfUser(id: number): Promise<Announcement[]> {
     return this.repository
       .createQueryBuilder('a')
@@ -93,12 +104,11 @@ export class AnnouncementsRepository implements IAnnouncementsRepository {
     latitude,
     longitude,
     max,
-    min,
-    km
+    min
   }: IFilterDTO): Promise<Announcement[]> {
     const query = this.repository
       .createQueryBuilder('a')
-      .select('a.id, d.latitude, d.longitude')
+      .select('a.id, d.latitude, d.longitude, a.title, d.adress, d.zip_code, d.city, d.state')
       .innerJoin('a.adress', 'd')
       .innerJoin('a.category', 'c')
       .andWhere('a.id_adress = d.id')
@@ -120,8 +130,8 @@ export class AnnouncementsRepository implements IAnnouncementsRepository {
           '(6371 * acos( cos(radians(:latitude)) * cos(radians(latitude)) * cos(radians(:longitude) - radians(longitude)) + sin(radians(:latitude)) * sin(radians(latitude))))',
           'distance'
         )
-        .having('distance <= :km')
-        .setParameters({ latitude, longitude, km });
+        .having('distance <= 10')
+        .setParameters({ latitude, longitude });
       return query.getRawMany();
     }
 

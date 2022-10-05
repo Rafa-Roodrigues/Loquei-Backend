@@ -26,7 +26,6 @@ export class FilterAnnouncementsUseCase {
     categories,
     max,
     min,
-    km,
     adress,
     city,
     number,
@@ -38,27 +37,34 @@ export class FilterAnnouncementsUseCase {
     let latitude = '';
     let longitude = '';
 
-    if (adress && city && number && state && zip_code) {
+    if (adress && city && state && zip_code) {
       const infoAdress = await getAdress({
         adress,
         city,
-        number,
+        number: String(number),
         state,
         zip_code
       });
 
       const { lat, lng } = infoAdress.data.results[0].locations[0].latLng;
       latitude = lat;
-      longitude = lng;
+      longitude = lng;      
     }
 
-    return this.announcementsRepository.filter({
+    const announcements = await this.announcementsRepository.filter({
       categories: listCategories,
       latitude,
       longitude,
       max,
       min,
-      km
     });
+
+    return {
+      announcements,
+      user: {
+        lat: latitude,
+        lng: longitude
+      }
+    }
   }
 }

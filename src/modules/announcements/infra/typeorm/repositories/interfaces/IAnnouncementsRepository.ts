@@ -10,6 +10,7 @@ export interface IAnnouncementsRepository {
   delete(id: number): Promise<void>;
   all(): Promise<Announcement[]>;
   listAnnouncementsOfUser(id: number): Promise<Announcement[]>;
+  limitAnnouncements(id: number): Promise<Announcement[]>;
   filter({
     categories,
     latitude,

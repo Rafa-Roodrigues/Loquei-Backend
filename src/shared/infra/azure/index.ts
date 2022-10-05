@@ -38,7 +38,7 @@ export class Azure {
     deleteFile(file.filename);
 
     return {
-      url: `https://imagestoredemoday.blob.core.windows.net/${nameContainer}/${file.filename}`,
+      url: `https://imagensloquei.blob.core.windows.net/${nameContainer}/${file.filename}`,
       name: file.filename,
       etag: response.etag as string
     };
