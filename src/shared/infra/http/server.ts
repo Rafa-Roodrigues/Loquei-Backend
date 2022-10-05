@@ -10,14 +10,16 @@ import { routes } from './routes';
 import { AppError } from '../../error/AppError';
 import cors from 'cors';
 
-const options: cors.CorsOptions = {
-  origin: '*',
-  methods: '*'
-};
-
 const app = express();
 
-app.use(cors(options));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST, PATCH");
+
+  app.use(cors());
+  next();
+})
+
 app.use(express.json());
 
 app.use(routes);
