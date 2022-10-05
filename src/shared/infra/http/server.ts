@@ -35,4 +35,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen('8080', () => console.log('Backend rodando na porta 8080... 📀'));
+app.listen(process.env.PORT || 8080);
