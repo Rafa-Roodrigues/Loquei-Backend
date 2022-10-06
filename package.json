@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "server": "ts-node-dev --transpile-only --ignore-watch node_modules ./src/shared/infra/http/server.ts",
-    "deploy": "node ./src/shared/infra/http/server.ts",
+    "deploy": "pm2 start ./src/shared/infra/http/server.ts --name loquei",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
