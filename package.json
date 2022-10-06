@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "server": "ts-node-dev --transpile-only --ignore-watch node_modules ./src/shared/infra/http/server.ts",
-    "deploy": "pm2 start ./src/shared/infra/http/server.ts --name loquei",
+    "build": "tsc",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules ./src/shared/infra/http/server.ts",
+    "deploy": "pm2 start ./dist/shared/infra/http/server.js --name loquei",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
