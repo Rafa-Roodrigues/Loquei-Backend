@@ -33,6 +33,6 @@ app.use((err, req, res, next) => {
         message: `Internal server error - ${err.message}`
     });
 });
-app.listen(process.env.PORT || 8080, () => {
+app.listen(8080, () => {
     console.log("Backend rodando na porta 8080");
 });
