@@ -12,14 +12,6 @@ import cors from 'cors';
 
 const app = express();
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST, PATCH");
-
-//   app.use(cors());
-//   next();
-// })
-
 app.use(cors());
 
 app.use(express.json());
@@ -39,6 +31,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Backend rodando na porta 8080");
 });
