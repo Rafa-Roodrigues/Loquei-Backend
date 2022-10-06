@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tsyringe_1 = require("tsyringe");
+const AdressesRepository_1 = require("../../../modules/announcements/infra/typeorm/repositories/AdressesRepository");
+const AnnouncementsRepository_1 = require("../../../modules/announcements/infra/typeorm/repositories/AnnouncementsRepository");
+const CategoriesRepository_1 = require("../../../modules/announcements/infra/typeorm/repositories/CategoriesRepository");
+const UsersRepository_1 = require("../../../modules/users/infra/typeorm/repositories/UsersRepository");
+const azure_1 = require("../azure");
+const ImagesRepository_1 = require("../typeorm/repositories/ImagesRepository");
+tsyringe_1.container.registerSingleton('ImagesRepository', ImagesRepository_1.ImagesRepository);
+tsyringe_1.container.registerSingleton('CategoriesRepository', CategoriesRepository_1.CategoriesRepository);
+tsyringe_1.container.registerSingleton('AnnouncementsRepository', AnnouncementsRepository_1.AnnouncementsRepository);
+tsyringe_1.container.registerSingleton('CategoriesRepository', CategoriesRepository_1.CategoriesRepository);
+tsyringe_1.container.registerSingleton('UsersRepository', UsersRepository_1.UsersRepository);
+tsyringe_1.container.registerSingleton('ImagesRepository', ImagesRepository_1.ImagesRepository);
+tsyringe_1.container.registerSingleton('AdressesRepository', AdressesRepository_1.AdressesRepository);
+tsyringe_1.container.registerSingleton('Azure', azure_1.Azure);
